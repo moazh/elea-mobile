@@ -13,20 +13,11 @@ Future<void> initializeDependencies() async {
   // ---------------------------------------------------------------------------
   // Remote
   // ---------------------------------------------------------------------------
-  // injector.registerLazySingleton<NetworkClient>(() =>
-  //     NetworkClient(
-  //         errorModel: ResError(),
-  //         isEnableLogger: kDebugMode,
-  //         // options: BaseOptions(baseUrl: "https://www.merasim.com/api/")));
-  //         options: BaseOptions(
-  //             baseUrl: Platform.isIOS
-  //                 ? "http://localhost:9090/"
-  //                 : "http://10.0.2.2:9090/")));
-  //
+  injector.registerLazySingleton<Api>(() => ApiImpl());
+
   // ---------------------------------------------------------------------------
   // Local
   // ---------------------------------------------------------------------------
-  injector.registerLazySingleton<Api>(() => ApiImpl());
   injector.registerFactory<Storage>(
     () => StorageImpl(
       sharedPref: injector(),
